@@ -21,5 +21,5 @@ for caseStr in caseStrList :
     caseStrs = caseStr.split('X')
     for caseChars in caseStrs : 
         score += GetScore(len(caseChars))
-        
+
     print(str(score))
