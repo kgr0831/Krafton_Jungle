@@ -28,7 +28,10 @@ def IsPrime(number: int):
 
 
 for num in numList :
+    count = 0
     for i in range(num // 2, 1, -1): # 시작값 : num / 2, 끝나는 기준 값 : 1, 증가 : -1 //는 정수 나눗셈
+        count += 1
+        print(count)
         if IsPrime(num - i) and IsPrime(i):
             print(i, num - i)
             break
