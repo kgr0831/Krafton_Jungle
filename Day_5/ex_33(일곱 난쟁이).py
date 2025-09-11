@@ -18,4 +18,6 @@ a,b = findfake()
 inputDatas.remove(a)
 inputDatas.remove(b)
 
-print(*sorted(inputDatas), end = "\n")
+for i in sorted(inputDatas):
+    print(i)
+    
