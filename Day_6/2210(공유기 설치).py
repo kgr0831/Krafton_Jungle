@@ -19,6 +19,7 @@ for _ in range(N):
 
 start = 1 # 공유기 거리 최소
 end = arr[-1] - arr[0] # 공유기 거리 최대
+
 result = 0
 
 # 재귀로 적절한 두 공유기 사이의 거리를 찾는다
@@ -46,33 +47,34 @@ print(result)
 
 # region 다른 버전 -> 재귀
 
-# homeCount, wifiCount = map(int, input().split())
+homeCount, wifiCount = map(int, input().split())
 
-# homePosList = []
-# for _ in range(homeCount):
-#     homePosList.append(int(input()))
+homePosList = []
+for _ in range(homeCount):
+    homePosList.append(int(input()))
 
-# homePosList.sort()
+homePosList.sort()
 
-# def CanSet(dist : int):
-#     curPos = homePosList[0]
-#     count = 1
-#     for i in range(len(homePosList)) :
-#         if homePosList[i] - curPos >= dist :
-#             count += 1
-#             curPos = homePosList[i]
-#     return count >= wifiCount
+def CanSet(dist : int):
+    curPos = homePosList[0]
+    count = 1
+    for i in range(len(homePosList)) :
+        if homePosList[i] - curPos >= dist :
+            count += 1
+            curPos = homePosList[i]
+    return count >= wifiCount
 
-# def GetDist(start, end):
-#     if start > end:
-#         return end  # 마지막으로 성공한 mid (= 현재 end) 반환
+def GetDist(start, end):
+    if start > end:
+        return end  # 마지막으로 성공한 mid (= 현재 end) 반환
     
-#     mid = (start + end) // 2
-#     if CanSet(mid): # 가능
-#         return GetDist(mid + 1, end) # 거리 키우기
-#     else: # 불가능
-#         return GetDist(start, mid - 1) # 거리 줄이기
+    mid = (start + end) // 2
+
+    if CanSet(mid): # 가능
+        return GetDist(mid + 1, end) # 거리 키우기
+    else: # 불가능
+        return GetDist(start, mid - 1) # 거리 줄이기
     
-# print(GetDist(1, homePosList[-1] - homePosList[0]))
+print(GetDist(1, homePosList[-1] - homePosList[0]))
 
 # endregion
