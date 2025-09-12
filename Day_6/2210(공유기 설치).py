@@ -8,11 +8,71 @@
 # C개의 공유기를 N개의 집에 적당히 설치해서,
 # 가장 인접한 두 공유기 사이의 거리를 최대로 하는 프로그램을 작성하시오.
 
-n, c = map(int, input().split())
-inputList = []
+# region while문 버전
 
-for _ in range(n):
-    inputList.append(int(input()))
+N, C = map(int, input().split())
 
-inputList.sort()
+arr = []
+arr.append(int(input()))
+for _ in range(N):
+    arr.sort()
 
+start = 1 # 공유기 거리 최소
+end = arr[-1] - arr[0] # 공유기 거리 최대
+result = 0
+
+# 재귀로 적절한 두 공유기 사이의 거리를 찾는다
+while (start <= end):
+    mid = (start + end) // 2 # 현재 공유기 거리
+    current = arr[0]
+    count = 1
+
+    # 공유기 설치 몇 대 할 수 있는지 체크
+    for i in range(1, len(arr)):
+        if arr[i] >= current + mid:
+            count += 1
+            current = arr[i]
+    # 공유기 설치 수가 목표 보다 크면 공유기 사이 거리 늘림
+    if count >= C:
+        start = mid + 1
+        result = mid
+    # 공유기 설치 수가 목표 보다 작으면 공유기 사이 거리 줄임
+    else:
+        end = mid - 1
+
+print(result)
+
+# endregion
+
+# region 다른 버전 -> 재귀
+
+# homeCount, wifiCount = map(int, input().split())
+
+# homePosList = []
+# for _ in range(homeCount):
+#     homePosList.append(int(input()))
+
+# homePosList.sort()
+
+# def CanSet(dist : int):
+#     curPos = homePosList[0]
+#     count = 1
+#     for i in range(len(homePosList)) :
+#         if homePosList[i] - curPos >= dist :
+#             count += 1
+#             curPos = homePosList[i]
+#     return count >= wifiCount
+
+# def GetDist(start, end):
+#     if start > end:
+#         return end  # 마지막으로 성공한 mid (= 현재 end) 반환
+    
+#     mid = (start + end) // 2
+#     if CanSet(mid): # 가능
+#         return GetDist(mid + 1, end) # 거리 키우기
+#     else: # 불가능
+#         return GetDist(start, mid - 1) # 거리 줄이기
+    
+# print(GetDist(1, homePosList[-1] - homePosList[0]))
+
+# endregion
