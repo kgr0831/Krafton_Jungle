@@ -106,7 +106,7 @@ for _ in range(int(lineCount)) :
     inputStr = input().split()
     GetInput(int(inputStr[0]), int(inputStr[1]))
 
-
+Run(startIndex)
 # 4 5 1
 # 1 2
 # 1 3
