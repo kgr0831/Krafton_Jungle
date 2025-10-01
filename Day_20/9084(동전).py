@@ -12,7 +12,6 @@ def GetCaseCount(kCoinList : list, kMoney : int) -> int :
             
     return dp[kMoney]
 
-
 _InputCount = int(input())
 results = []
 for _ in range(_InputCount) :
